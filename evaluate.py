@@ -124,6 +124,12 @@ def f1_score(confusion_matrix):
     f1 = np.sum(np.divide(tp, fra, out=np.zeros_like(fra, dtype=float), where=fra != 0))
     return f1
 
+def domain_alignment(confusion_matrix, alignment_coefficient):
+    initial = np.inner(confusion_matrix.sum(axis=1), confusion_matrix.sum(axis=0))
+    count = np.bincount(count, minlength=alignment_coefficient**2)
+    cm = count.reshape(alignment_coefficient, alignment_coefficient)
+    return initial+cm
+
 
 if __name__ == '__main__':
     main()
